@@ -1,0 +1,6 @@
+# @package logger
+
+_target_: pytorch_lightning.loggers.MLFlowLogger
+
+experiment_name: ${experiment_name}
+tracking_uri: file://${work_dir}/mlruns

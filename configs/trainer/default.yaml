@@ -1,0 +1,18 @@
+# @package trainer
+_target_: pytorch_lightning.Trainer
+
+# profiler: pytorch
+# plugins: deepspeed
+# precision: 16
+
+gpus: ${gpus}
+max_epochs: ${epochs}
+accelerator: dp
+callbacks: false
+checkpoint_callback: false
+
+# val_check_interval: 625 # 10000 / 16
+val_check_interval: 1.0
+weights_summary: null
+progress_bar_refresh_rate: 10
+reload_dataloaders_every_epoch: True

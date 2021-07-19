@@ -1,0 +1,11 @@
+# @package optimizer
+
+_target_: torch.optim.RMSprop
+
+params: ???
+lr: ${lr}
+alpha: 0.99
+eps: 1e-08
+weight_decay: 0
+momentum: 0
+centered: False
