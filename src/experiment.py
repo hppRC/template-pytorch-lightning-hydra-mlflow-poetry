@@ -1,9 +1,13 @@
 import torch
 from torch import Tensor
+from torch.optim import Optimizer
 import torch.nn.functional as F
 import pytorch_lightning as pl
-from src.model import VAE
+
 from omegaconf import DictConfig
+from hydra.utils import instantiate
+
+from src.model import VAE
 
 
 class Experiment(pl.LightningModule):
@@ -11,15 +15,14 @@ class Experiment(pl.LightningModule):
         super(Experiment, self).__init__()
         self.config: DictConfig = config
         self.model = VAE()
+        self.save_hyperparameters()
 
 
     def configure_optimizers(self):
-        optimizer = instantiate(self.config.optimizer, params=self.model.parameters())
-        return instantiate(
-            self.config.optimizer.optimizer_config,
-            optimizer=optimizer,
-            data_module=self.data_module,
-        )
+        optimizer: Optimizer = instantiate(self.config.optimizer, params=self.model.parameters())
+        # scheduler = 
+        # return instantiate(self.config.optimizer.optimizer_config, optimizer=optimizer)
+        return 
 
 
     def loss_fn(self, recon_x: Tensor, x: Tensor, mu: Tensor, logvar: Tensor):

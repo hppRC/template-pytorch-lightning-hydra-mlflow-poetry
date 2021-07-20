@@ -1,9 +1,9 @@
 import os
-import torch
 import pytorch_lightning as pl
 
 from torch.utils.data import DataLoader
 from typing import Optional
+from src.dataset import TrainDataset, ValDataset, TestDataset
 
 
 class DataModule(pl.LightningDataModule):
@@ -21,9 +21,9 @@ class DataModule(pl.LightningDataModule):
 
     # will be called in every GPUs
     def setup(self, stage: Optional[str] = None) -> None:
-        self.train = [torch.randn(64, 20) for _ in range(1000)]
-        self.val = [torch.randn(64, 20) for _ in range(20)]
-        self.test = [torch.randn(64, 20) for _ in range(20)]
+        self.train = TrainDataset()
+        self.val = ValDataset()
+        self.test = TestDataset()
 
 
     def train_dataloader(self) -> DataLoader:
