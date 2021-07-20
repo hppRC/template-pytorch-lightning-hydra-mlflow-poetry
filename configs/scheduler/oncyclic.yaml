@@ -1,0 +1,21 @@
+# @package optimizer
+# https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.OneCycleLR.html
+
+_target_: torch.optim.lr_scheduler.OneCycleLR
+
+optimizer: ???
+max_lr: ???
+
+total_steps:
+epochs:
+steps_per_epoch:
+pct_start: 0.3
+anneal_strategy: cos
+cycle_momentum: True
+base_momentum: 0.85
+max_momentum: 0.95
+div_factor: 25.0
+final_div_factor: 10000.0
+three_phase: False
+last_epoch: -1
+verbose: False

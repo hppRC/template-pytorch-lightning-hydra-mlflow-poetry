@@ -1,0 +1,9 @@
+# @package optimizer
+# https://pytorch.org/docs/stable/generated/torch.optim.Rprop.html
+
+_target_: torch.optim.Rprop
+
+params: ???
+lr: ${lr} # 0.01
+etas: [0.5, 1.2]
+step_sizes: [1e-06, 50]

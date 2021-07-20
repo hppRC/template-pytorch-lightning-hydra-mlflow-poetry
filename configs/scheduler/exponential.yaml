@@ -1,0 +1,10 @@
+# @package optimizer
+# https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.ExponentialLR.html
+
+_target_: torch.optim.lr_scheduler.ExponentialLR
+
+optimizer: ???
+gamma: ???
+
+last_epoch: -1
+verbose: False

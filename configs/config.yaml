@@ -2,20 +2,20 @@
 
 # specify here default training configuration
 defaults:
-  - optimizer: adam # sgd, rmsprop, adamw
-
   - trainer: default
+  - optimizer: adam
+  - scheduler:
   - logger: mlflow
 
   # enable color logging
   - override hydra/job_logging: colorlog
   - override hydra/hydra_logging: colorlog
 
-
+# global configurations
 experiment_name: Default
 gpus: 0
-max_epochs: 1
 lr: 1e-5
+epochs: 1
 
 
 # path to original working directory (that `run.py` was executed from in command line)

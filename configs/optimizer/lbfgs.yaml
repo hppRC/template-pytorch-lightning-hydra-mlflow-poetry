@@ -1,0 +1,13 @@
+# @package optimizer
+# https://pytorch.org/docs/stable/generated/torch.optim.LBFGS.html
+
+_target_: torch.optim.LBFGS
+
+params: ???
+lr: ${lr} # default: 1.0
+max_iter: 20
+max_eval:
+tolerance_grad: 1e-07
+tolerance_change: 1e-09
+history_size: 100
+line_search_fn:

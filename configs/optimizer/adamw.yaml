@@ -1,9 +1,10 @@
 # @package optimizer
+# https://pytorch.org/docs/stable/generated/torch.optim.AdamW.html
 
 _target_: torch.optim.AdamW
 
 params: ???
-lr: ${lr}
+lr: ${lr} # default: 0.001
 betas: [0.9, 0.999]
 eps: 1e-08
 weight_decay: 0.01

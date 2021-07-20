@@ -1,0 +1,11 @@
+# @package optimizer
+# https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.StepLR.html
+
+_target_: torch.optim.lr_scheduler.StepLR
+
+optimizer: ???
+step_size: ???
+
+gamma: 0.1
+last_epoch: -1
+verbose: False

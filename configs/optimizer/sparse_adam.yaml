@@ -1,0 +1,9 @@
+# @package optimizer
+# https://pytorch.org/docs/stable/generated/torch.optim.SparseAdam.html
+
+_target_: torch.optim.SparseAdam
+
+params: ???
+lr: ${lr} # default: 0.001
+betas: [0.9, 0.999]
+eps: 1e-08

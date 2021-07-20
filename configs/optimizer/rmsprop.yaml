@@ -1,9 +1,10 @@
 # @package optimizer
+# https://pytorch.org/docs/stable/generated/torch.optim.RMSprop.html
 
 _target_: torch.optim.RMSprop
 
 params: ???
-lr: ${lr}
+lr: ${lr} # 0.01
 alpha: 0.99
 eps: 1e-08
 weight_decay: 0
