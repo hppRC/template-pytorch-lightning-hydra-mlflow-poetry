@@ -1,10 +1,10 @@
-# @package optimizer
+# @package scheduler
 # https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.CosineAnnealingLR.html
 
 _target_: torch.optim.lr_scheduler.CosineAnnealingLR
 
 optimizer: ???
-T_max: ${epochs}
+T_max: ???
 
 eta_min: 0
 last_epoch: -1

@@ -1,4 +1,4 @@
-# @package optimizer
+# @package scheduler
 # https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.ReduceLROnPlateau.html
 
 _target_: torch.optim.lr_scheduler.ReduceLROnPlateau

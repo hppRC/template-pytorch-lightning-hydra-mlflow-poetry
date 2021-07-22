@@ -1,27 +1,31 @@
+from typing import List, Union
+
 import torch
+from torch import Tensor
 
 
 class Dataset(torch.utils.data.Dataset):
-    def __len__(self):
+    def __len__(self) -> None:
         return len(self.dataset)
 
-    def __getitem__(self, key):
+    def __getitem__(self, key: Union[int, slice]) -> Union[Tensor, List[Tensor]]:
         return self.dataset[key]
 
 
 class TrainDataset(Dataset):
     def __init__(self) -> None:
-        super(Dataset, self).__init__()
-        self.dataset = [torch.randn(64, 20) for _ in range(1000)]
+        super().__init__()
+        # like a dataset of images
+        self.dataset = [torch.randn(1, 28, 28) for _ in range(8000)]
 
 
 class ValDataset(Dataset):
     def __init__(self) -> None:
-        super(Dataset, self).__init__()
-        self.dataset = [torch.randn(64, 20) for _ in range(20)]
+        super().__init__()
+        self.dataset = [torch.randn(1, 28, 28) for _ in range(1000)]
 
 
 class TestDataset(Dataset):
     def __init__(self) -> None:
-        super(Dataset, self).__init__()
-        self.dataset = [torch.randn(64, 20) for _ in range(20)]
+        super().__init__()
+        self.dataset = [torch.randn(1, 28, 28) for _ in range(1000)]

@@ -1,5 +1,3 @@
-# @package logger
-
 _target_: pytorch_lightning.loggers.MLFlowLogger
 
 experiment_name: ${experiment_name}

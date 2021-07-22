@@ -1,9 +1,9 @@
+from typing import Tuple
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-
 from torch import Tensor
-from typing import Tuple
 
 
 class VAE(nn.Module):
@@ -16,12 +16,10 @@ class VAE(nn.Module):
         self.fc3 = nn.Linear(20, 400)
         self.fc4 = nn.Linear(400, 784)
 
-
     def reparameterize(self, mu: Tensor, logvar: Tensor) -> Tensor:
         std = torch.exp(0.5 * logvar)
         eps = torch.randn_like(std)
         return mu + eps * std
-
 
     def encode(self, x: Tensor) -> Tuple[Tensor, Tensor]:
         h1 = F.relu(self.fc1(x))
@@ -29,11 +27,9 @@ class VAE(nn.Module):
         logvar = self.fc2_logvar(h1)
         return mu, logvar
 
-
     def decode(self, z: Tensor) -> Tensor:
         h3 = F.relu(self.fc3(z))
-        return F.sigmoid(self.fc4(h3))
-
+        return torch.sigmoid(self.fc4(h3))
 
     def forward(self, x: Tensor) -> Tuple[Tensor, Tensor, Tensor]:
         mu, logvar = self.encode(x.view(-1, 784))

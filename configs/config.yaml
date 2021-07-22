@@ -4,7 +4,7 @@
 defaults:
   - trainer: default
   - optimizer: adam
-  - scheduler:
+  - scheduler: step
   - logger: mlflow
 
   # enable color logging
@@ -13,9 +13,10 @@ defaults:
 
 # global configurations
 experiment_name: Default
-gpus: 0
+gpus: [0]
 lr: 1e-5
-epochs: 1
+epochs: 5
+batch_size: 16
 
 
 # path to original working directory (that `run.py` was executed from in command line)
