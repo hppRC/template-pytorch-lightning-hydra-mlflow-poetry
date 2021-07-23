@@ -12,11 +12,12 @@ defaults:
   - override hydra/hydra_logging: colorlog
 
 # global configurations
-experiment_name: Default
+experiment_name: default
 gpus: [0]
 lr: 1e-5
 epochs: 5
 batch_size: 16
+latent_dim: 20
 
 
 # path to original working directory (that `run.py` was executed from in command line)

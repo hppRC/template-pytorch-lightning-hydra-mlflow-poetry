@@ -15,8 +15,14 @@ class DataModule(pl.LightningDataModule):
         self.val = None
         self.test = None
 
-    # will be called in every GPUs
+    def prepare_data(self):
+        # download, split, etc...
+        # only called on 1 GPU/TPU in distributed
+        pass
+
     def setup(self, stage: Optional[str] = None) -> None:
+        # make assignments here (val/train/test split)
+        # called on every GPUs
         self.train = TrainDataset()
         self.val = ValDataset()
         self.test = TestDataset()
@@ -44,3 +50,8 @@ class DataModule(pl.LightningDataModule):
             num_workers=os.cpu_count(),
             # pin_memory=True,
         )
+
+    def teardown(self, stage: Optional[str] = None):
+        # clean up after fit or test
+        # called on every process in DDP
+        pass

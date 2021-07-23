@@ -7,13 +7,13 @@ from torch import Tensor
 
 
 class VAE(nn.Module):
-    def __init__(self) -> None:
+    def __init__(self, latent_dim: int) -> None:
         super(VAE, self).__init__()
 
         self.fc1 = nn.Linear(784, 400)
-        self.fc2_mu = nn.Linear(400, 20)
-        self.fc2_logvar = nn.Linear(400, 20)
-        self.fc3 = nn.Linear(20, 400)
+        self.fc2_mu = nn.Linear(400, latent_dim)
+        self.fc2_logvar = nn.Linear(400, latent_dim)
+        self.fc3 = nn.Linear(latent_dim, 400)
         self.fc4 = nn.Linear(400, 784)
 
     def reparameterize(self, mu: Tensor, logvar: Tensor) -> Tensor:
@@ -33,6 +33,6 @@ class VAE(nn.Module):
 
     def forward(self, x: Tensor) -> Tuple[Tensor, Tensor, Tensor]:
         mu, logvar = self.encode(x.view(-1, 784))
-        z = self.reparameterize(mu, logvar)
+        z = self.reparameterize(mu, logvar)  # latent variables
         out = self.decode(z)
         return out, mu, logvar

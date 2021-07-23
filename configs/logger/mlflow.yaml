@@ -1,4 +1,9 @@
+# https://pytorch-lightning.readthedocs.io/en/stable/extensions/generated/pytorch_lightning.loggers.MLFlowLogger.html
 _target_: pytorch_lightning.loggers.MLFlowLogger
 
 experiment_name: ${experiment_name}
 tracking_uri: file://${work_dir}/mlruns
+tags:
+save_dir: ./mlruns
+prefix: ''
+artifact_location:

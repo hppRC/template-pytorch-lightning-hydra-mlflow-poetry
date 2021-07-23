@@ -22,7 +22,7 @@ class Experiment(pl.LightningModule):
                 LearningRateMonitor(logging_interval="step"),
             ],
         )
-        self.model = VAE()
+        self.model = VAE(latent_dim=config.latent_dim)
         self.data_module = DataModule(batch_size=config.batch_size)
 
     def configure_optimizers(self):
@@ -32,7 +32,9 @@ class Experiment(pl.LightningModule):
         return [optimizer], [scheduler]
 
     def loss_fn(self, recon_x: Tensor, x: Tensor, mu: Tensor, logvar: Tensor) -> Tensor:
-        BCE = F.binary_cross_entropy_with_logits(recon_x, x.view(-1, 784), reduction="sum")
+        BCE = F.binary_cross_entropy_with_logits(
+            recon_x, x.view(-1, 784), reduction="sum"
+        )
         # see Appendix B from VAE paper:
         # Kingma and Welling. Auto-Encoding Variational Bayes. ICLR, 2014
         # https://arxiv.org/abs/1312.6114
@@ -51,6 +53,7 @@ class Experiment(pl.LightningModule):
         self.log("val_loss", loss)
         return loss
 
+    # train your model
     def fit(self):
         self.trainer.fit(self, self.data_module)
         self.logger.log_hyperparams(
@@ -64,6 +67,7 @@ class Experiment(pl.LightningModule):
         self.log_artifact(".hydra/overrides.yaml")
         self.log_artifact("main.log")
 
+    # run your whole experiments
     def run(self):
         self.fit()
 
