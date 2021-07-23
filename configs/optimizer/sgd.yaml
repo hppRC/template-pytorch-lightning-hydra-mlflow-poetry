@@ -4,7 +4,7 @@
 _target_: torch.optim.SGD
 
 params: ???
-lr: ???
+lr: ${lr}
 momentum: 0
 dampening: 0
 weight_decay: 0

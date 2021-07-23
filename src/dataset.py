@@ -16,16 +16,16 @@ class TrainDataset(Dataset):
     def __init__(self) -> None:
         super().__init__()
         # like a dataset of images
-        self.dataset = [torch.randn(1, 28, 28) for _ in range(8000)]
+        self.dataset = [torch.randn(1, 28, 28) for _ in range(80000)]
 
 
 class ValDataset(Dataset):
     def __init__(self) -> None:
         super().__init__()
-        self.dataset = [torch.randn(1, 28, 28) for _ in range(1000)]
+        self.dataset = [torch.randn(1, 28, 28) for _ in range(10000)]
 
 
 class TestDataset(Dataset):
     def __init__(self) -> None:
         super().__init__()
-        self.dataset = [torch.randn(1, 28, 28) for _ in range(1000)]
+        self.dataset = [torch.randn(1, 28, 28) for _ in range(10000)]

@@ -19,7 +19,7 @@ class Experiment(pl.LightningModule):
             config.trainer,
             logger=logger,
             callbacks=[
-                LearningRateMonitor(),
+                LearningRateMonitor(logging_interval="step"),
             ],
         )
         self.model = VAE()
@@ -32,7 +32,7 @@ class Experiment(pl.LightningModule):
         return [optimizer], [scheduler]
 
     def loss_fn(self, recon_x: Tensor, x: Tensor, mu: Tensor, logvar: Tensor) -> Tensor:
-        BCE = F.binary_cross_entropy(recon_x, x.view(-1, 784), reduction="sum")
+        BCE = F.binary_cross_entropy_with_logits(recon_x, x.view(-1, 784), reduction="sum")
         # see Appendix B from VAE paper:
         # Kingma and Welling. Auto-Encoding Variational Bayes. ICLR, 2014
         # https://arxiv.org/abs/1312.6114
